@@ -18,6 +18,19 @@
     --fonte-inconsolata: 'Inconsolata', monospace;
 }
 
-div {
-    font-family: var(--fonte-inconsolata);
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.dicionario {
+    width: 737px;
+}
+
+.container-cabecalho, .container-cabecalho-configuracao, .container-cabecalho-configuracao-fonte {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }

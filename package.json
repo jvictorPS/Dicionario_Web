@@ -17,8 +17,5 @@
   "bugs": {
     "url": "https://github.com/jvictorPS/Dicionario_Web/issues"
   },
-  "homepage": "https://github.com/jvictorPS/Dicionario_Web#readme",
-  "devDependencies": {
-    "typescript": "^5.1.6"
-  }
+  "homepage": "https://github.com/jvictorPS/Dicionario_Web#readme"
 }

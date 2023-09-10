@@ -1,10 +1,11 @@
+import Dicionario from "./components/organism/Dicionario/index"
 
 function App() {
 
   return (
-    <>
-      <h1>Testando</h1>
-    </>
+    
+    <Dicionario />
+
   )
 }
 

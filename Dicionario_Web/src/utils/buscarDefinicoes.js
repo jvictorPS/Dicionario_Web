@@ -1,4 +1,4 @@
-export default function buscarSinonimosVerbos(array , tipo) {
+export default function buscarDefinicoes(array , tipo) {
     const arrayValores = []
     const valores = array.find(item => item.partOfSpeech === tipo)
 

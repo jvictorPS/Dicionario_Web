@@ -1,7 +1,18 @@
 import { useState } from 'react'
-import iconeBusca from '../../../assets/icon-search.svg'
 import axios from 'axios'
-import buscarSinonimosVerbos from '../../../utils/buscarSinonimoVerbo'
+import buscarDefinicoes from '../../../utils/buscarDefinicoes'
+import buscarSinonimos from '../../../utils/buscarSinonimos'
+import buscarAudio from '../../../utils/buscarAudio'
+
+import iconeBusca from '../../../assets/icon-search.svg'
+
+import { 
+    InputBusca, 
+    Buscador, 
+    BotaoBusca,
+
+} from './style'
+import PalavraNaoEncontrada from '../PalavraNaoEncontrada'
 
 export default function Busca() {
 
@@ -14,6 +25,8 @@ export default function Busca() {
     const [audio , setAudio] = useState('')
     const [sinonimos , setSinonimos] = useState([])
     const [verbos , setVerbos] = useState([])
+    const [exemploSinonimos , setExemplosSinonimos] = useState([])
+    const [buscaURL , setBuscaURL] = useState('')
 
     const handleSearchChange = (event) => {
         setPegaPalavra(event.target.value)
@@ -25,12 +38,11 @@ export default function Busca() {
         .then((response) => {
             setResultado(response.data)
             handleRequestProcessing(response.data)
-            setErro(null)
+            setErro('')
         })
         .catch((error) => {
             setResultado("não localizado")
-            setErro('Erro ao buscar a definição da palavra')
-            console.log(error)
+            setErro(error.response)
         })
     }
 
@@ -40,17 +52,12 @@ export default function Busca() {
 
             setPalavra(primeiroObjetoRequisicao.word)
             setPhonetica(primeiroObjetoRequisicao.phonetic)
-            setSinonimos(buscarSinonimosVerbos(primeiroObjetoRequisicao.meanings , 'noun'))
-            setVerbos(buscarSinonimosVerbos(primeiroObjetoRequisicao.meanings , 'verb'))
+            setSinonimos(buscarDefinicoes(primeiroObjetoRequisicao.meanings , 'noun'))
+            setVerbos(buscarDefinicoes(primeiroObjetoRequisicao.meanings , 'verb'))
+            setExemplosSinonimos(buscarSinonimos(primeiroObjetoRequisicao.meanings , 'noun'))
+            setBuscaURL(primeiroObjetoRequisicao.sourceUrls[0])
+            setAudio(buscarAudio(primeiroObjetoRequisicao.phonetics))
 
-            const filtroAudioBYSA3 = primeiroObjetoRequisicao.phonetics.find(item => item.license && item.license.name == "BY-SA 3.0")
-
-
-            if (filtroAudioBYSA3) {
-                setAudio(filtroAudioBYSA3.audio)
-            } else if (data.length > 0) {
-                setAudio(primeiroObjetoRequisicao.phonetics[0].audio)
-            }
 
         } else {
             return
@@ -60,19 +67,34 @@ export default function Busca() {
 
     return (
         <div>
-        <input
-            type="search"
+        
+        <InputBusca>
+        
+        <Buscador
+            type="text"
             id="search"
             name="search"
-            placeholder="Digite sua pesquisa aqui"
+            placeholder="Search for any word…"
             value={pegaPalavra}
             onChange={handleSearchChange}
         />
-        <button onClick={handleSearchClick}>
+        <BotaoBusca onClick={handleSearchClick}>
             <img src={iconeBusca} className="fa fa-search" />
-        </button>
-        {erro && <div>{erro}</div>}
-        {resultado && (
+        </BotaoBusca>
+        
+        </InputBusca>
+
+        {erro !== '' ? 
+        
+        <>
+            <br />
+            <br />
+            <br />
+            <PalavraNaoEncontrada />
+        </>
+        
+        : 
+        
         <div>
             <h2>Definição de {pegaPalavra}:</h2>
             <pre>{palavra}</pre>
@@ -87,14 +109,27 @@ export default function Busca() {
             </ul>
 
             <br />
+            <h3>exemplo sinonimos</h3>
+            <ul>
+                {exemploSinonimos.map((verbo , index) => (
+                    <li key={index}>{verbo}</li>
+                ))}
+            </ul>
+
+            <br />
             <h3>verb</h3>
             <ul>
                 {verbos.map((verbo , index) => (
                     <li key={index}>{verbo}</li>
                 ))}
             </ul>
+
+            <br />
+            <h4>{buscaURL}</h4>
         </div>
-        )}
+        
+        }
+        
         </div>
     )
 }

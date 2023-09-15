@@ -42,6 +42,13 @@ export const BotaoBusca = styled.button`
     -moz-appearance: none;
 
     &:hover , &:focus {
-        cursor: pointer
+        cursor: pointer;
     }
+`
+
+export const ContainerPalavra = styled.h1`
+    font-size: 55px;
+    color: #2D2D2D;
+    font-weight: 700;
+
 `

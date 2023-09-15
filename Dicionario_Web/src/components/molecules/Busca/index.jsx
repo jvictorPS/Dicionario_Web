@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import axios from 'axios'
+
 import buscarDefinicoes from '../../../utils/buscarDefinicoes'
 import buscarSinonimos from '../../../utils/buscarSinonimos'
 import buscarAudio from '../../../utils/buscarAudio'
@@ -10,9 +11,12 @@ import {
     InputBusca, 
     Buscador, 
     BotaoBusca,
+    ContainerPalavra
 
 } from './style'
+
 import PalavraNaoEncontrada from '../PalavraNaoEncontrada'
+import BotaoPay from '../BotaoPlay'
 
 export default function Busca() {
 
@@ -77,9 +81,11 @@ export default function Busca() {
             placeholder="Search for any word…"
             value={pegaPalavra}
             onChange={handleSearchChange}
+            autoComplete='off'
         />
+
         <BotaoBusca onClick={handleSearchClick}>
-            <img src={iconeBusca} className="fa fa-search" />
+            <img src={iconeBusca} />
         </BotaoBusca>
         
         </InputBusca>
@@ -96,9 +102,15 @@ export default function Busca() {
         : 
         
         <div>
-            <h2>Definição de {pegaPalavra}:</h2>
+            <ContainerPalavra>
+                {palavra}
+            </ContainerPalavra>
+
             <pre>{palavra}</pre>
             <pre>{phonetica}</pre>
+
+            <BotaoPay AudioURL={audio}></BotaoPay>
+
             <pre>{audio}</pre>
             <br />
             <h3>noun</h3>
@@ -125,7 +137,7 @@ export default function Busca() {
             </ul>
 
             <br />
-            <h4>{buscaURL}</h4>
+            <a href={buscaURL}>{buscaURL}</a>
         </div>
         
         }

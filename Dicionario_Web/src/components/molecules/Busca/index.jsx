@@ -11,12 +11,17 @@ import {
     InputBusca, 
     Buscador, 
     BotaoBusca,
-    ContainerPalavra
+    ContainerPalavra,
+    ContainerPrimeiraSessao,
+    ContainerFonetica,
 
 } from './style'
 
 import PalavraNaoEncontrada from '../PalavraNaoEncontrada'
 import BotaoPay from '../BotaoPlay'
+import ListaDeDefinicoes from '../ListaDeDefinicoes'
+import ListaDeExemplos from '../ListaDeExemplos'
+import Rodape from '../Rodape'
 
 export default function Busca() {
 
@@ -31,12 +36,20 @@ export default function Busca() {
     const [verbos , setVerbos] = useState([])
     const [exemploSinonimos , setExemplosSinonimos] = useState([])
     const [buscaURL , setBuscaURL] = useState('')
+    const [inputVazio , setInputVazio] = useState(false)
 
     const handleSearchChange = (event) => {
         setPegaPalavra(event.target.value)
     }
 
     const handleSearchClick = () => {
+
+        if(pegaPalavra === '') {
+            return setInputVazio(true)
+        } else {
+            setInputVazio(false)
+        }
+
         axios
         .get(`https://api.dictionaryapi.dev/api/v2/entries/en/${pegaPalavra}`)
         .then((response) => {
@@ -45,7 +58,6 @@ export default function Busca() {
             setErro('')
         })
         .catch((error) => {
-            setResultado("não localizado")
             setErro(error.response)
         })
     }
@@ -62,86 +74,56 @@ export default function Busca() {
             setBuscaURL(primeiroObjetoRequisicao.sourceUrls[0])
             setAudio(buscarAudio(primeiroObjetoRequisicao.phonetics))
 
-
         } else {
             return
         }
-
     }
 
     return (
         <div>
         
-        <InputBusca>
-        
-        <Buscador
-            type="text"
-            id="search"
-            name="search"
-            placeholder="Search for any word…"
-            value={pegaPalavra}
-            onChange={handleSearchChange}
-            autoComplete='off'
-        />
-
-        <BotaoBusca onClick={handleSearchClick}>
-            <img src={iconeBusca} />
-        </BotaoBusca>
-        
+        <InputBusca vazio={inputVazio}>
+            <Buscador
+                type="text"
+                id="search"
+                name="search"
+                placeholder="Search for any word…"
+                value={pegaPalavra}
+                onChange={handleSearchChange}
+                autoComplete='off'
+            />
+            <BotaoBusca onClick={handleSearchClick}>
+                <img src={iconeBusca} />
+            </BotaoBusca>
         </InputBusca>
 
         {erro !== '' ? 
-        
-        <>
-            <br />
-            <br />
-            <br />
             <PalavraNaoEncontrada />
-        </>
-        
-        : 
-        
-        <div>
-            <ContainerPalavra>
-                {palavra}
-            </ContainerPalavra>
+        :
+            <div>
+                <ContainerPrimeiraSessao>
+                        <div>
+                            <ContainerPalavra>
+                                {palavra}
+                            </ContainerPalavra>
 
-            <pre>{palavra}</pre>
-            <pre>{phonetica}</pre>
+                            <ContainerFonetica>
+                                {phonetica}
+                            </ContainerFonetica>
+                        </div>
+                    <BotaoPay AudioURL={audio} />
+                </ContainerPrimeiraSessao>
 
-            <BotaoPay AudioURL={audio}></BotaoPay>
+                <h3>noun</h3>
+                <ListaDeDefinicoes exemplos={sinonimos} />
+                <ListaDeExemplos exemplos={exemploSinonimos} />
 
-            <pre>{audio}</pre>
-            <br />
-            <h3>noun</h3>
-            <ul>
-                {sinonimos.map((sinonimo , index) => (
-                    <li key={index}>{sinonimo}</li>
-                ))}
-            </ul>
+                <h3>verb</h3>
+                <ListaDeDefinicoes exemplos={verbos} />
 
-            <br />
-            <h3>exemplo sinonimos</h3>
-            <ul>
-                {exemploSinonimos.map((verbo , index) => (
-                    <li key={index}>{verbo}</li>
-                ))}
-            </ul>
-
-            <br />
-            <h3>verb</h3>
-            <ul>
-                {verbos.map((verbo , index) => (
-                    <li key={index}>{verbo}</li>
-                ))}
-            </ul>
-
-            <br />
-            <a href={buscaURL}>{buscaURL}</a>
-        </div>
-        
+                <Rodape URL={buscaURL} />
+            </div>
         }
-        
         </div>
     )
 }

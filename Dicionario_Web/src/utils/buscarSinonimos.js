@@ -7,7 +7,7 @@ export default function buscarSinonimos(array , tipo) {
     }
 
     valores.synonyms.forEach((item) => {
-        if (arrayValores.length > 4) {
+        if (arrayValores.length > 10) {
             return
         }
         arrayValores.push(item)

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const InputBusca = styled.div`
-    background-color: #F4F4F4;
+    background-color: ${props => props.theme.cores.corInput};
     height: 64px;
     border-radius: 16px;
     display: flex;
@@ -27,10 +27,11 @@ export const Buscador = styled.input`
     border: none;
     appearance: none;
     -webkit-appearance: none;
+    color: ${props => props.theme.cores.textoPrincipal};
     -moz-appearance: none;
 
     &::placeholder {
-        color: #2D2D2D;
+        color: ${props => props.theme.cores.textoPrincipal};
         font-size: 20px;
         font-weight: 700;
         opacity: 0.25
@@ -42,6 +43,7 @@ export const BotaoBusca = styled.button`
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
+    background-color: ${props => props.theme.cores.corInput};
 
     &:hover , &:focus {
         cursor: pointer;

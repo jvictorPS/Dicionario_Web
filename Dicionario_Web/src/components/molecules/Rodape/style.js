@@ -17,6 +17,6 @@ export const Link = styled.a`
     font-size: 14px;
     font-weight: 400;
     text-decoration: none;
-    color: #2D2D2D;
+    color: ${props => props.theme.cores.textoPrincipal};;
     gap: 10px;
 `

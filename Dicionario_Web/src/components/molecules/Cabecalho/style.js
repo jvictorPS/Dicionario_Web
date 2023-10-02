@@ -9,5 +9,6 @@ export const ContainerCabecalho = styled.header`
 
 export const ContainerConfgCabecalho = styled.div`
     display: flex;
-
+    align-items: center;
+    gap: 20px;
 `

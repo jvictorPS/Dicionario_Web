@@ -9,7 +9,7 @@ export const Titulo = styled.h3`
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
-    color: #757575;
+    color: ${props => props.theme.cores.textoSecundaria};;
 `
 
 export const ContainerPlavras = styled.div`
@@ -19,7 +19,7 @@ export const ContainerPlavras = styled.div`
 
 export const Palavra = styled.p`
     font-size: 20px;
-    color: #A445ED;
+    color: ${props => props.theme.cores.roxo};;
     font-weight: 700;
     margin-right: 10px;
 `

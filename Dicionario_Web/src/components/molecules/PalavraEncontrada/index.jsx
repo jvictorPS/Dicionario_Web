@@ -10,7 +10,7 @@ import {
     ContainerPalavra,
     ContainerPrimeiraSessao,
     ContainerFonetica,
-
+    Titulo
 } from './style'
 
 export default function PalavraEncontrada({
@@ -39,11 +39,11 @@ export default function PalavraEncontrada({
                 <BotaoPay AudioURL={audio} />
             </ContainerPrimeiraSessao>
 
-        <h3>noun</h3>
+        <Titulo>noun</Titulo>
             <ListaDeDefinicoes exemplos={sinonimos} />
             <ListaDeExemplos exemplos={exemploSinonimos} />
 
-        <h3>verb</h3>
+        <Titulo>verb</Titulo>
             <ListaDeDefinicoes exemplos={verbos} />
 
             <Rodape URL={buscaURL} />

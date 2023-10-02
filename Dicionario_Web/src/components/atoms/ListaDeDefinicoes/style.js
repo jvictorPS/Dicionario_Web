@@ -15,12 +15,13 @@ export const Lista = styled.ul`
 
 export const Texto = styled.p`
     margin-left: 20px;
+    color: ${props => props.theme.cores.textoPrincipal};
 `
 
 export const Titulo = styled.h3`
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
-    color: #757575;
+    color: ${props => props.theme.cores.textoSecundaria};;
     margin-bottom: 25px;
 `

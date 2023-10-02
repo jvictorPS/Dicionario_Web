@@ -15,12 +15,12 @@ export const Emoticon = styled.img`
 `
 
 export const TextoErro = styled.p`
-    color: #757575;
+    color: ${props => props.theme.cores.textoSecundaria};;
     font-size: 18px;
 `
 
 export const TituloErro = styled.h3`
-    color: #000000;
+    color: ${props => props.theme.cores.textoPrincipal};;
     font-size: 20px;
     font-weight: 700;
 

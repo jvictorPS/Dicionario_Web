@@ -11,17 +11,12 @@ import {
     InputBusca, 
     Buscador, 
     BotaoBusca,
-    ContainerPalavra,
-    ContainerPrimeiraSessao,
-    ContainerFonetica,
 
 } from './style'
 
-import PalavraNaoEncontrada from '../PalavraNaoEncontrada'
-import BotaoPay from '../BotaoPlay'
-import ListaDeDefinicoes from '../ListaDeDefinicoes'
-import ListaDeExemplos from '../ListaDeExemplos'
-import Rodape from '../Rodape'
+import PalavraNaoEncontrada from '../../atoms/PalavraNaoEncontrada'
+import PalavraEncontrada from '../PalavraEncontrada'
+
 
 export default function Busca() {
 
@@ -37,12 +32,15 @@ export default function Busca() {
     const [exemploSinonimos , setExemplosSinonimos] = useState([])
     const [buscaURL , setBuscaURL] = useState('')
     const [inputVazio , setInputVazio] = useState(false)
+    const [click , setClick] = useState(false)
 
     const handleSearchChange = (event) => {
         setPegaPalavra(event.target.value)
     }
 
     const handleSearchClick = () => {
+
+        setClick(true)
 
         if(pegaPalavra === '') {
             return setInputVazio(true)
@@ -97,32 +95,26 @@ export default function Busca() {
             </BotaoBusca>
         </InputBusca>
 
-        {erro !== '' ? 
-            <PalavraNaoEncontrada />
+        {click === false ? 
+            <></>
         :
-            <div>
-                <ContainerPrimeiraSessao>
-                        <div>
-                            <ContainerPalavra>
-                                {palavra}
-                            </ContainerPalavra>
 
-                            <ContainerFonetica>
-                                {phonetica}
-                            </ContainerFonetica>
-                        </div>
-                    <BotaoPay AudioURL={audio} />
-                </ContainerPrimeiraSessao>
+        erro !== '' ?
 
-                <h3>noun</h3>
-                <ListaDeDefinicoes exemplos={sinonimos} />
-                <ListaDeExemplos exemplos={exemploSinonimos} />
+        <PalavraNaoEncontrada/>
 
-                <h3>verb</h3>
-                <ListaDeDefinicoes exemplos={verbos} />
+        :
 
-                <Rodape URL={buscaURL} />
-            </div>
+        <PalavraEncontrada 
+            palavra={palavra}
+            phonetica={phonetica}
+            audio={audio}
+            sinonimos={sinonimos}
+            exemploSinonimos={exemploSinonimos}
+            verbos={verbos}
+            buscaURL={buscaURL}
+            />
+
         }
         </div>
     )

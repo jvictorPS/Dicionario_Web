@@ -11,6 +11,8 @@ import {
     InputBusca, 
     Buscador, 
     BotaoBusca,
+    MensagemInputVazio,
+    ContainerInputBusca,
 
 } from './style'
 
@@ -22,7 +24,7 @@ export default function Busca() {
 
     const [pegaPalavra, setPegaPalavra] = useState('')
     const [resultado , setResultado] = useState(null)
-    const [erro, setErro] = useState(null)
+    const [erro, setErro] = useState('')
     
     const [palavra , setPalavra] = useState('')
     const [phonetica , setPhonetica] = useState('')
@@ -48,16 +50,16 @@ export default function Busca() {
             setInputVazio(false)
         }
 
-        axios
-        .get(`https://api.dictionaryapi.dev/api/v2/entries/en/${pegaPalavra}`)
-        .then((response) => {
-            setResultado(response.data)
-            handleRequestProcessing(response.data)
-            setErro('')
-        })
-        .catch((error) => {
-            setErro(error.response)
-        })
+            axios
+            .get(`https://api.dictionaryapi.dev/api/v2/entries/en/${pegaPalavra}`)
+            .then((response) => {
+                setResultado(response.data)
+                handleRequestProcessing(response.data)
+                setErro('')
+            })
+            .catch((error) => {
+                setErro(error.response)
+            })
     }
 
     const handleRequestProcessing = (data) => {
@@ -79,43 +81,59 @@ export default function Busca() {
 
     return (
         <div>
-        
-        <InputBusca vazio={inputVazio}>
-            <Buscador
-                type="text"
-                id="search"
-                name="search"
-                placeholder="Search for any word…"
-                value={pegaPalavra}
-                onChange={handleSearchChange}
-                autoComplete='off'
-            />
-            <BotaoBusca onClick={handleSearchClick}>
-                <img src={iconeBusca} />
-            </BotaoBusca>
-        </InputBusca>
+            <ContainerInputBusca>
+                <InputBusca vazio={inputVazio.toString()}>
+                    <Buscador
+                        type="text"
+                        id="search"
+                        name="search"
+                        placeholder="Search for any word…"
+                        value={pegaPalavra}
+                        onChange={handleSearchChange}
+                        autoComplete='off'
+                    />
+                    <BotaoBusca onClick={handleSearchClick}>
+                        <img src={iconeBusca} />
+                    </BotaoBusca>
+                </InputBusca>
 
-        {click === false ? 
-            <></>
-        :
+                {inputVazio === true ? 
+                    <MensagemInputVazio>
+                        Whoops, cant be empty…
+                    </MensagemInputVazio>
 
-        erro !== '' ?
+                :
+                    <></>
+                }
+            </ContainerInputBusca>
 
-        <PalavraNaoEncontrada/>
-
-        :
-
-        <PalavraEncontrada 
-            palavra={palavra}
-            phonetica={phonetica}
-            audio={audio}
-            sinonimos={sinonimos}
-            exemploSinonimos={exemploSinonimos}
-            verbos={verbos}
-            buscaURL={buscaURL}
-            />
-
-        }
+            {click === false || inputVazio === true ? 
+                ( <></> )
+            : 
+                (
+                    <>
+                    {resultado ? 
+                        (
+                            <PalavraEncontrada 
+                                palavra={palavra}
+                                phonetica={phonetica}
+                                audio={audio}
+                                sinonimos={sinonimos}
+                                exemploSinonimos={exemploSinonimos}
+                                verbos={verbos}
+                                buscaURL={buscaURL}
+                            />
+                        )
+                    :
+                        ( erro === '' ?
+                            (<></>) 
+                        :
+                            (<PalavraNaoEncontrada />)
+                        )
+                    }
+                    </>
+                )
+            }
         </div>
     )
 }

@@ -1,5 +1,9 @@
 import styled from 'styled-components'
 
+export const ContainerInputBusca = styled.div`
+    margin: 45px 0;
+
+`
 export const InputBusca = styled.div`
     background-color: ${props => props.theme.cores.corInput};
     height: 64px;
@@ -8,12 +12,11 @@ export const InputBusca = styled.div`
     justify-content: space-between;
     box-sizing: border-box;
     align-items: center;
-    margin: 45px 0;
     padding: 0 20px;
-    border: ${props => props.vazio ? '1px solid red' : 'none'};
+    border: ${props => props.vazio === 'true' ? '1px solid #FF5252' : 'none'};
 
     &:hover , &:focus {
-        border: 1px solid #A445ED;
+        border: ${props => props.vazio === 'true' ? '1px solid #FF5252' : '1px solid #A445ED'};
     }
 `
 
@@ -50,4 +53,15 @@ export const BotaoBusca = styled.button`
     &:hover , &:focus {
         cursor: pointer;
     }
+`
+
+export const MensagemInputVazio = styled.div`
+    color: #FF5252;
+    font-size: 20px;
+    font-weight: 400;
+    display: inline-block;
+    height: 24px;
+    width: 350px;
+    margin-top: 10px;
+    visibility: ${props => props.vazio ? 'hidden' : 'visible'};
 `

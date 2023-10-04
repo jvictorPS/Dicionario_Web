@@ -12,6 +12,7 @@ export default {
         textoPrincipal: '#FFF',
         textoSecundaria: '#757575',
         corInput: '#1F1F1F',
-        corBotaoTema: '#A445ED'
+        corBotaoTema: '#A445ED',
+        sombra: 'rgba(164, 69, 237, 0.15)'
     }
 }

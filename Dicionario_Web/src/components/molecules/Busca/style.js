@@ -28,13 +28,15 @@ export const Buscador = styled.input`
     appearance: none;
     -webkit-appearance: none;
     color: ${props => props.theme.cores.textoPrincipal};
+    font-family: ${props => props.theme.fonte};
     -moz-appearance: none;
 
     &::placeholder {
         color: ${props => props.theme.cores.textoPrincipal};
         font-size: 20px;
         font-weight: 700;
-        opacity: 0.25
+        opacity: 0.25;
+        font-family: ${props => props.theme.fonte}
     }
 `
 

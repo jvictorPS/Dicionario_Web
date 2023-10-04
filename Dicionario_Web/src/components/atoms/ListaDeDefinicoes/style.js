@@ -23,6 +23,6 @@ export const Titulo = styled.h3`
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
-    color: ${props => props.theme.cores.textoSecundaria};;
+    color: ${props => props.theme.cores.textoSecundaria};
     margin-bottom: 25px;
 `

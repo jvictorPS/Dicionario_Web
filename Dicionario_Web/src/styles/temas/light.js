@@ -11,5 +11,6 @@ export default {
         textoSecundaria: '#757575',
         corInput: '#F4F4F4',
         corBotaoTema: '#757575',
+        sombra: 'rgba(0, 0, 0, 0.10)',
     }
 }

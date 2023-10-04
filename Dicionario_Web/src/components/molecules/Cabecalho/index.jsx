@@ -2,15 +2,18 @@
 
 import { useContext, useState } from 'react'
 import IconeLivro from '../../../assets/iconoir_book.png'
+import IconeSeta from '../../../assets/icon-arrow-down.svg'
 import Switch from 'react-switch'
 import { ThemeContext } from 'styled-components'
 
-import { DownOutlined } from '@ant-design/icons';
-import { Dropdown, Space } from 'antd';
+import { Dropdown } from 'antd';
 
 import { 
         ContainerCabecalho, 
         ContainerConfgCabecalho,
+        SpaceModificado,
+        Fonte,
+        Separador
     
     } from './style'
 
@@ -29,18 +32,19 @@ export default function Cabecalho({mudarTema , mudarFonte}) {
         {
             label: 'Sans Serif',
             key: 'Inter, sans-serif',
+            className: 'itens-menu',
         },
         {
             label: 'Serif',
             key: 'Lora, serif',
+            className: 'itens-menu',
         },
         {
             label: 'Mono',
             key: 'Inconsolata, monospace',
+            className: 'itens-menu',
         },
     ]
-
-    const corDoTexto = props => props.theme.cores.textoPrincipal
 
     return (
         <ContainerCabecalho>
@@ -53,24 +57,26 @@ export default function Cabecalho({mudarTema , mudarFonte}) {
                     menu={{
                         items,
                         onClick: onClick,
-                        style: {
-                            color: 'red',
-                        }
+                        style:{
+                            backgroundColor: cores.corInput,
+                        },
                     }}
-                    
+
                     >
 
                     <a onClick={(e) => e.preventDefault()}>
-                        <Space
-                            style={{
-                                color: {corDoTexto},
-                            }}
-                        >
+                        <SpaceModificado>
+
+                            <Fonte>
                             {fonteAtual}
-                            <DownOutlined />
-                        </Space>
+
+                            </Fonte>
+                            <img src={IconeSeta} alt="seta para baixo" />
+                        </SpaceModificado>
                     </a>
                 </Dropdown>
+
+                <Separador />
 
                 <Switch
                     onChange={mudarTema}

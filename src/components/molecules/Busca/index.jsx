@@ -44,6 +44,8 @@ export default function Busca() {
 
         setClick(true)
 
+        console.log(resultado)
+
         if(pegaPalavra === '') {
             return setInputVazio(true)
         } else {
@@ -59,6 +61,7 @@ export default function Busca() {
             })
             .catch((error) => {
                 setErro(error.response)
+                setResultado(null)
             })
     }
 

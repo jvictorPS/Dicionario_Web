@@ -1,8 +1,24 @@
-# React + Vite
+<h1>Dicionário De Língua Inglesa Web</h1>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicação web de um dicionário consumindo a API <strong>dictionaryapi.dev</strong>
 
-Currently, two official plugins are available:
+<h4>Link do projeto: <a href="https://dicionario-web.vercel.app/">Vercel</a></h4>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<h3>O projeto possui:</h3>
+<ul>
+  <li>Modo light/dark</li>
+  <li>Alteração dinâmica da fonte das letras (Inter, Lora e Inconsolata)</li>
+  <li>Audio da palavra pesquisada</li>
+  <li>Retorna definições da palavra, sinônimo, verbos etc</li>
+</ul>
+
+<h3>Light/Dark mode</h3>
+
+<div style="display: flex; flex-direction: row;">
+  <img src="https://github.com/jvictorPS/Dicionario_Web/assets/100648619/8890c213-1900-4a48-9dd9-c91a4844c8cb" alt="tema light" width="400">
+  <img src="https://github.com/jvictorPS/Dicionario_Web/assets/100648619/cf92f89f-eff8-4c84-940a-2180c6386a68" alt="tema dark" width="400">
+</div>
+
+<h3>Opções de fonte</h3>
+  
+<img src="https://github.com/jvictorPS/Dicionario_Web/assets/100648619/ba1a2402-b3c8-401a-9a8e-b598d0044d7d" alt="Fonte" width="400">

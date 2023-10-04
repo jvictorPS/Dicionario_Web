@@ -11,7 +11,7 @@ const Global = createGlobalStyle`
   body {
     display: flex;
     justify-content: center;
-    background-color: ${props => props.theme.cores.fundo}
+    background-color: ${props => props.theme.cores.fundo};
   }
 `
 

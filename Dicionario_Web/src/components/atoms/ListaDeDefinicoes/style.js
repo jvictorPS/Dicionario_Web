@@ -10,12 +10,13 @@ export const ItemLista = styled.li`
 `
 
 export const Lista = styled.ul`
-    margin-bottom: 40px
+    margin-bottom: 40px;
 `
 
 export const Texto = styled.p`
     margin-left: 20px;
     color: ${props => props.theme.cores.textoPrincipal};
+    font-family: ${props => props.theme.fonte}
 `
 
 export const Titulo = styled.h3`

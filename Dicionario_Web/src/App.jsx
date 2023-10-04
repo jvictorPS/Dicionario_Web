@@ -9,17 +9,24 @@ import { useState } from "react"
 function App() {
 
   const [ tema , setTema ] = useState(light)
+  const [ fonteLetra , setFonteLetra ] = useState("Inter, sans-serif")
 
   const mudarTema = () => {
-    setTema(tema.titulo === 'light' ? dark : light)
-    console.log(tema.iconeLua)
+    setTema(tema.titulo === "light" ? dark : light)
+  }
+
+  dark.fonte = fonteLetra
+  light.fonte = fonteLetra
+
+  function mudarFonte(fonte) {
+    setFonteLetra(fonte)
   }
 
   return (
     <ThemeProvider theme={tema}>
 
       <Global />
-      <Dicionario mudarTema={mudarTema}/>
+      <Dicionario mudarTema={mudarTema} mudarFonte={mudarFonte}/>
       
     </ThemeProvider>
 

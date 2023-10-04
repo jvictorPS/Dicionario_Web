@@ -4,6 +4,7 @@ import IconeLua from '../../assets/darkAtivo.svg'
 export default {
     titulo: 'dark',
     iconeLua: IconeLua,
+    fonte: 'Inter, sans-serif',
 
     cores: {
         fundo: '#050505',

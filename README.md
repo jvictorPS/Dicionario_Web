@@ -10,7 +10,13 @@ Aplicação web de um dicionário consumindo a API <strong>dictionaryapi.dev</st
   <li>Alteração dinâmica da fonte das letras (Inter, Lora e Inconsolata)</li>
   <li>Audio da palavra pesquisada</li>
   <li>Retorna definições da palavra, sinônimo, verbos etc</li>
+  <li>Responsividade para diferentes formatos de tela</li>
+
 </ul>
+
+<h3>Visão Geral</h3>
+
+  <img src="https://github.com/jvictorPS/Dicionario_Web/assets/100648619/bb376b57-4490-45e1-bd1a-fc662db5f6d0" alt="tema dark" width="800">
 
 <h3>Light/Dark mode</h3>
 

@@ -7,6 +7,10 @@ export const ContainerCabecalho = styled.header`
     justify-content: space-between;
     align-items: center;
     height: 40px;
+
+    @media (max-width: 435px) {
+        margin-top: 15px;
+    }
 `
 
 export const ContainerConfgCabecalho = styled.div`

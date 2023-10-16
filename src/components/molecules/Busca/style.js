@@ -3,6 +3,10 @@ import styled from 'styled-components'
 export const ContainerInputBusca = styled.div`
     margin: 45px 0;
 
+    @media (max-width: 435px) {
+        margin: 30px 0;
+    }
+
 `
 export const InputBusca = styled.div`
     background-color: ${props => props.theme.cores.corInput};
